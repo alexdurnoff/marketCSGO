@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Админ-панель</title>
+	<style type="text/css">
+	    .items 	{
+	        display: inline-block;
+	    }
+	</style>
+</head>
+	<body th:object="${expressions}">
+		<div th:each="expression:${expressions}">
+			<form action="#" th:action="@{/admin/delete}" method="post" th:object="${expression}" >
+				<p class="items" th:text="${expression.expression}"></p>
+				<p class="items" th:text="${expression.id}"></p>
+				<button type="submit" class="items" th:value="${expression}" name="Удалить">Удалить выражение</button>
+			</form>
+		</div>
+		<form action="/admin/add" method="get">
+			<button name="add" formaction="/admin/add" title = "Добавить выражение">Добавить выражение</button>
+		</form>
+	</body>
+</html>
