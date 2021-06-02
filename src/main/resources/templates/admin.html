@@ -13,10 +13,10 @@
 </head>
 	<body th:object="${expressions}">
 		<div th:each="expression:${expressions}">
-			<form action="#" th:action="@{/admin/delete}" method="post" th:object="${expression}" >
+			<form action="#" method="get" th:object="${expression}" th:action="@{'/admin/delete/' + ${expression.id}}" >
 				<p class="items" th:text="${expression.expression}"></p>
 				<p class="items" th:text="${expression.id}"></p>
-				<button type="submit" class="items" th:value="${expression}" name="Удалить">Удалить выражение</button>
+				<button type="submit" class="items">Удалить выражение</button>
 			</form>
 		</div>
 		<form action="/admin/add" method="get">

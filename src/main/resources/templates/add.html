@@ -8,7 +8,7 @@
 </head>
 <body >
 	<form action="add" th:object="${expression}" method="post" >
-		<input name="Добавить выражение" type="text" th:value="${expression.expression}"/>
+		<input name="Добавить выражение" type="text" th:field="*{expression}"/>
 		<button name="add" title="Добавить" formaction="add">Добавить выражение</button>
 	</form>
 </body>
