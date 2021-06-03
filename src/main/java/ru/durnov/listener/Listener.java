@@ -1,5 +1,7 @@
 package ru.durnov.listener;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -28,11 +30,28 @@ public class Listener {
 	
 	@PostConstruct
 	private void start() throws InterruptedException {
-		parse();
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				try {
+					parse();
+				} catch (IOException e) {
+				
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+		
+					e.printStackTrace();
+				} catch (URISyntaxException e) {
+					e.printStackTrace();
+				}
+				
+			}
+		}).start();
 	}
 	
 	
-	public void parse() {
+	public void parse() throws IOException, InterruptedException, URISyntaxException {
 		while (true) {
 			List<Item> items = this.ItemFromSite.items();
 			for (Item item : items) {
